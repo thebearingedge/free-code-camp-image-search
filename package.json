@@ -50,6 +50,7 @@
     "babel-preset-stage-1": "6.5.0",
     "express": "4.13.4",
     "express-async-wrap": "1.0.0",
+    "google-images": "1.0.0",
     "knex": "0.10.0",
     "pg": "4.5.5"
   }
