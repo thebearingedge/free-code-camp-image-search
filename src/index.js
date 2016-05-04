@@ -1,16 +1,17 @@
 
 import 'babel-polyfill'
 import express from 'express'
-import imageSearch from './image-search'
-import { logger, getLogs } from './search-logger'
+import searchImages from './image-search'
+import { logSearches, getSearches } from './search-logger'
 import { search as searchConfig, port } from './config'
 import knex from './db'
+
 
 const app = express()
 
 
 app
   .get('/', (req, res) => res.send('hello world'))
-  .get('/api/imagesearch/:term', logger(knex), imageSearch(searchConfig))
-  .get('/api/latest/imagesearch', getLogs(knex))
+  .get('/api/imagesearch/:term', logSearches(knex), searchImages(searchConfig))
+  .get('/api/latest/imagesearch', getSearches(knex))
   .listen(port, _ => console.log(`listening on ${port}`))

@@ -25,7 +25,7 @@ var host = 'www.googleapis.com';
 var pathname = '/customsearch/v1';
 var json = true;
 
-var imageSearch = function imageSearch(config) {
+var searchImages = function searchImages(config) {
   return (0, _expressAsyncWrap2.default)(function () {
     var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(req, res) {
       var q, offset, start, query, uri, _ref, images;
@@ -47,7 +47,7 @@ var imageSearch = function imageSearch(config) {
               images = _ref.items;
 
 
-              res.json(images.map(formatImageData));
+              res.json(images.map(formatImage));
 
             case 10:
             case 'end':
@@ -63,7 +63,7 @@ var imageSearch = function imageSearch(config) {
   }());
 };
 
-var formatImageData = function formatImageData(_ref2) {
+var formatImage = function formatImage(_ref2) {
   var link = _ref2.link;
   var snippet = _ref2.snippet;
   var image = _ref2.image;
@@ -75,4 +75,4 @@ var formatImageData = function formatImageData(_ref2) {
   };
 };
 
-exports.default = imageSearch;
+exports.default = searchImages;

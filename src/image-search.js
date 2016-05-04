@@ -10,7 +10,7 @@ const pathname = '/customsearch/v1'
 const json = true
 
 
-const imageSearch = config => wrap(async (req, res) => {
+const searchImages = config => wrap(async (req, res) => {
 
   const { term: q } = req.params
   const { offset } = req.query
@@ -21,11 +21,11 @@ const imageSearch = config => wrap(async (req, res) => {
 
   const { items: images } = await request({ uri, json })
 
-  res.json(images.map(formatImageData))
+  res.json(images.map(formatImage))
 })
 
 
-const formatImageData = ({ link, snippet, image }) => ({
+const formatImage = ({ link, snippet, image }) => ({
   url: link,
   snippet,
   thumbnail: image.thumbnailLink,
@@ -33,4 +33,4 @@ const formatImageData = ({ link, snippet, image }) => ({
 })
 
 
-export default imageSearch
+export default searchImages

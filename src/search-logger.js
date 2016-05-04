@@ -2,7 +2,7 @@
 import wrap from 'express-async-wrap'
 
 
-export const logger = knex => wrap(async ({ params }, res, next) => {
+export const logSearches = knex => wrap(async ({ params }, res, next) => {
 
   const { term } = params
 
@@ -12,7 +12,7 @@ export const logger = knex => wrap(async ({ params }, res, next) => {
 })
 
 
-export const getLogs = knex => wrap(async ({ params }, res, next) => {
+export const getSearches = knex => wrap(async ({ params }, res, next) => {
 
   const searches = await knex
     .select('term', 'when')
@@ -22,6 +22,3 @@ export const getLogs = knex => wrap(async ({ params }, res, next) => {
 
   res.json(searches)
 })
-
-
-export default logger
