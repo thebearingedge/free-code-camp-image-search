@@ -7,5 +7,11 @@ const app = express()
 
 
 app
-  .get('/', (req, res) => res.send('<meta name="google-site-verification" content="01Gg77g4krecLRBSmFFivbCAgctlY13exV7B3gGc6RE" />'))
+  .get('/', (req, res) => res.send(`
+    <html>
+      <head>
+        <meta name="google-site-verification" content="01Gg77g4krecLRBSmFFivbCAgctlY13exV7B3gGc6RE" />
+      </head>
+      <body></body>
+    </html>`))
   .listen(PORT, _ => console.log(`listening on ${PORT}`))
