@@ -14,7 +14,8 @@
     "db:up": "npm run -s knex migrate:latest",
     "db:down": "npm run -s knex migrate:rollback",
     "db:cycle": "npm run -s db:down && npm run -s db:up",
-    "watch": "npm-watch"
+    "watch": "npm-watch",
+    "heroku-postbuild": "npm run db:up"
   },
   "watch": {
     "start:dev": {

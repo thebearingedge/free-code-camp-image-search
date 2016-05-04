@@ -1,11 +1,14 @@
 
-export const up = ({ schema }) =>
+export const up = ({ schema, raw }) =>
 
   schema
     .createTable('searches', tb => {
       tb.increments('id')
       tb.string('term')
+        .notNullable()
       tb.timestamp('when')
+        .notNullable()
+        .defaultTo(raw('now()'))
     })
 
 

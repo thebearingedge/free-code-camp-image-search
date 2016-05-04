@@ -16,10 +16,20 @@ var logger = function logger(knex) {
   return (0, _expressAsyncWrap2.default)(function () {
     var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref, res, next) {
       var params = _ref.params;
+      var term;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              term = params.term;
+              _context.next = 3;
+              return knex('searches').insert({ term: term });
+
+            case 3:
+
+              next();
+
+            case 4:
             case 'end':
               return _context.stop();
           }
