@@ -12,8 +12,6 @@ var _imageSearch2 = _interopRequireDefault(_imageSearch);
 
 var _searchLogger = require('./search-logger');
 
-var _searchLogger2 = _interopRequireDefault(_searchLogger);
-
 var _config = require('./config');
 
 var _db = require('./db');
@@ -26,6 +24,6 @@ var app = (0, _express2.default)();
 
 app.get('/', function (req, res) {
   return res.send('hello world');
-}).get('/api/imagesearch/:term', (0, _searchLogger2.default)(_db2.default), (0, _imageSearch2.default)(_config.search)).listen(_config.port, function (_) {
+}).get('/api/imagesearch/:term', (0, _searchLogger.logger)(_db2.default), (0, _imageSearch2.default)(_config.search)).get('/api/latest/imagesearch', (0, _searchLogger.getLogs)(_db2.default)).listen(_config.port, function (_) {
   return console.log('listening on ' + _config.port);
 });
