@@ -1,4 +1,5 @@
 
+import 'babel-polyfill'
 import express from 'express'
 import imageSearch from './image-search'
 import { PORT } from './config'
