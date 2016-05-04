@@ -18,6 +18,6 @@ var app = (0, _express2.default)();
 
 app.get('/', function (req, res) {
   return res.send('hello world');
-}).get('/api/imagesearch/:term', _imageSearch2.default).listen(_config.PORT, function (_) {
-  return console.log('listening on ' + _config.PORT);
+}).get('/api/imagesearch/:term', (0, _imageSearch2.default)(_config.search)).listen(_config.port, function (_) {
+  return console.log('listening on ' + _config.port);
 });

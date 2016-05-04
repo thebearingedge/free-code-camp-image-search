@@ -2,7 +2,7 @@
 import 'babel-polyfill'
 import express from 'express'
 import imageSearch from './image-search'
-import { PORT } from './config'
+import { search as searchConfig, port } from './config'
 
 
 const app = express()
@@ -10,5 +10,5 @@ const app = express()
 
 app
   .get('/', (req, res) => res.send('hello world'))
-  .get('/api/imagesearch/:term', imageSearch)
-  .listen(PORT, _ => console.log(`listening on ${PORT}`))
+  .get('/api/imagesearch/:term', imageSearch(searchConfig))
+  .listen(port, _ => console.log(`listening on ${port}`))
