@@ -24,39 +24,44 @@ var _process$env = process.env;
 var key = _process$env.CSE_KEY;
 var cx = _process$env.CSE_ID;
 
-var searchType = 'image';
-var safe = 'medium';
-var num = 10;
 
-var parameters = { key: key, cx: cx, searchType: searchType, safe: safe, num: num };
+var num = 10;
+var safe = 'medium';
+var searchType = 'image';
+var fields = 'items(link,snippet,image/contextLink,image/thumbnailLink)';
+
+var parameters = { key: key, cx: cx, num: num, safe: safe, searchType: searchType, fields: fields };
 
 var protocol = 'https';
 var host = 'www.googleapis.com';
 var pathname = '/customsearch/v1';
 
-var imageSearch = (0, _expressAsyncWrap2.default)(function () {
-  var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref, res) {
-    var params = _ref.params;
+var json = true;
 
-    var q, query, uri, _ref2, images;
+var imageSearch = (0, _expressAsyncWrap2.default)(function () {
+  var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(req, res) {
+    var q, offset, start, query, uri, _ref, images;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            q = params.term;
-            query = _extends({}, parameters, { q: q });
+            q = req.params.term;
+            offset = req.query.offset;
+            start = (offset || 0 * num) + 1;
+            query = _extends({}, parameters, { q: q, start: start });
             uri = (0, _url.format)({ protocol: protocol, host: host, pathname: pathname, query: query });
-            _context.next = 5;
-            return (0, _requestPromise2.default)({ uri: uri, json: true });
+            _context.next = 7;
+            return (0, _requestPromise2.default)({ uri: uri, json: json });
 
-          case 5:
-            _ref2 = _context.sent;
-            images = _ref2.items;
+          case 7:
+            _ref = _context.sent;
+            images = _ref.items;
+
 
             res.json(images.map(formatImageData));
 
-          case 8:
+          case 10:
           case 'end':
             return _context.stop();
         }
@@ -69,10 +74,10 @@ var imageSearch = (0, _expressAsyncWrap2.default)(function () {
   };
 }());
 
-var formatImageData = function formatImageData(_ref3) {
-  var image = _ref3.image;
-  var snippet = _ref3.snippet;
-  var link = _ref3.link;
+var formatImageData = function formatImageData(_ref2) {
+  var link = _ref2.link;
+  var snippet = _ref2.snippet;
+  var image = _ref2.image;
   return {
     url: link,
     snippet: snippet,
