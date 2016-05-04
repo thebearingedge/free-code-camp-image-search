@@ -1,5 +1,8 @@
 
-import { development, production } from './src/config'
+import { database } from './src/config'
 
 
-export { development, production }
+const { production, development } = database
+
+
+export { production, development }
