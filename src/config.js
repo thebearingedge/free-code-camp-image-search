@@ -27,4 +27,13 @@ export const search = {
 }
 
 
+export const appName = process.env.APP_NAME || 'localhost:3000'
+
+
+export const searchEndpoint = '/api/imagesearch/:term'
+
+
+export const logEndpoint = '/api/latest/imagesearch'
+
+
 export const port = process.env.PORT || 3000

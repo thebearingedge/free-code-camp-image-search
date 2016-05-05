@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.js",
-    "babel": "rimraf dist && babel src -d dist",
+    "dist": "rimraf dist && babel -x .js src -d dist && npm run -s index",
+    "index": "cp src/index.jade dist/index.jade",
     "start": "node dist",
     "start:dev": "babel-node src",
     "knex": "babel-node node_modules/.bin/knex --",
@@ -23,9 +24,14 @@
         "src"
       ]
     },
-    "babel": {
+    "dist": {
       "patterns": [
         "src"
+      ]
+    },
+    "index": {
+      "patterns": [
+        "src/index.jade"
       ]
     }
   },
@@ -42,6 +48,7 @@
   "devDependencies": {
     "babel-eslint": "6.0.4",
     "eslint": "2.9.0",
+    "jade": "1.11.0",
     "npm-watch": "0.1.4",
     "rimraf": "2.5.2"
   },

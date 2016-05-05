@@ -28,4 +28,10 @@ var search = exports.search = {
   fields: 'items(link,snippet,image/contextLink,image/thumbnailLink)'
 };
 
+var appName = exports.appName = process.env.APP_NAME || 'localhost:3000';
+
+var searchEndpoint = exports.searchEndpoint = '/api/imagesearch/:term';
+
+var logEndpoint = exports.logEndpoint = '/api/latest/imagesearch';
+
 var port = exports.port = process.env.PORT || 3000;

@@ -1,17 +1,21 @@
 
 import 'babel-polyfill'
+import { join } from 'path'
 import express from 'express'
+import { renderFile } from 'jade'
 import searchImages from './image-search'
 import { logSearches, getSearches } from './search-logger'
-import { search as searchConfig, port } from './config'
+import { search, port, appName, searchEndpoint, logEndpoint } from './config'
 import knex from './db'
 
 
-const app = express()
+const locals = { appName, searchEndpoint, logEndpoint }
+
+const indexHtml = renderFile(join(__dirname, '/index.jade'), locals)
 
 
-app
-  .get('/', (req, res) => res.send('hello world'))
-  .get('/api/imagesearch/:term', logSearches(knex), searchImages(searchConfig))
+express()
+  .get('/', (_, res) => res.send(indexHtml))
+  .get('/api/imagesearch/:term', logSearches(knex), searchImages(search))
   .get('/api/latest/imagesearch', getSearches(knex))
   .listen(port, _ => console.log(`listening on ${port}`))
