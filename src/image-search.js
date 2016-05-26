@@ -14,7 +14,7 @@ const searchImages = config => wrap(async (req, res) => {
 
   const { term: q } = req.params
   const { offset } = req.query
-  const start = (offset || 0 * config.num) + 1
+  const start = Number(offset || config.num) + 1
   const query = { ...config, q, start }
 
   const uri = format({ protocol, host, pathname, query })

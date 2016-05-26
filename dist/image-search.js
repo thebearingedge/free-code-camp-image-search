@@ -36,7 +36,7 @@ var searchImages = function searchImages(config) {
             case 0:
               q = req.params.term;
               offset = req.query.offset;
-              start = (offset || 0 * config.num) + 1;
+              start = Number(offset || config.num) + 1;
               query = _extends({}, config, { q: q, start: start });
               uri = (0, _url.format)({ protocol: protocol, host: host, pathname: pathname, query: query });
               _context.next = 7;
