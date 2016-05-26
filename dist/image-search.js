@@ -25,7 +25,7 @@ var host = 'www.googleapis.com';
 var pathname = '/customsearch/v1';
 var json = true;
 
-var searchImages = function searchImages(config) {
+var searchImages = function searchImages(searchConfig) {
   return (0, _expressAsyncWrap2.default)(function () {
     var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(req, res) {
       var q, offset, start, query, uri, _ref, images;
@@ -36,8 +36,8 @@ var searchImages = function searchImages(config) {
             case 0:
               q = req.params.term;
               offset = req.query.offset;
-              start = Number(offset || config.num) + 1;
-              query = _extends({}, config, { q: q, start: start });
+              start = Number(offset || searchConfig.num) + 1;
+              query = _extends({}, searchConfig, { q: q, start: start });
               uri = (0, _url.format)({ protocol: protocol, host: host, pathname: pathname, query: query });
               _context.next = 7;
               return (0, _requestPromise2.default)({ uri: uri, json: json });

@@ -3,14 +3,14 @@ import 'babel-polyfill'
 import { join } from 'path'
 import express from 'express'
 import { renderFile } from 'jade'
+
+import knex from './db'
 import searchImages from './image-search'
 import { logSearches, getSearches } from './search-logger'
 import { search, port, appName, searchEndpoint, logEndpoint } from './config'
-import knex from './db'
 
 
 const locals = { appName, searchEndpoint, logEndpoint }
-
 const indexHtml = renderFile(join(__dirname, '/index.jade'), locals)
 
 

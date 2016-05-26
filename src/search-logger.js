@@ -2,17 +2,19 @@
 import wrap from 'express-async-wrap'
 
 
-export const logSearches = knex => wrap(async ({ params }, res, next) => {
+export const logSearches = knex => wrap(async ({ params }, _, next) => {
 
   const { term } = params
 
-  await knex('searches').insert({ term })
+  await knex
+    .insert({ term })
+    .into('searches')
 
   next()
 })
 
 
-export const getSearches = knex => wrap(async ({ params }, res, next) => {
+export const getSearches = knex => wrap(async (_, res) => {
 
   const searches = await knex
     .select('term', 'when')

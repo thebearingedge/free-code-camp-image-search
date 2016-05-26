@@ -10,12 +10,12 @@ const pathname = '/customsearch/v1'
 const json = true
 
 
-const searchImages = config => wrap(async (req, res) => {
+const searchImages = searchConfig => wrap(async (req, res) => {
 
   const { term: q } = req.params
   const { offset } = req.query
-  const start = Number(offset || config.num) + 1
-  const query = { ...config, q, start }
+  const start = Number(offset || searchConfig.num) + 1
+  const query = { ...searchConfig, q, start }
 
   const uri = format({ protocol, host, pathname, query })
 

@@ -15,7 +15,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var logSearches = exports.logSearches = function logSearches(knex) {
   return (0, _expressAsyncWrap2.default)(function () {
-    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref, res, next) {
+    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(_ref, _, next) {
       var params = _ref.params;
       var term;
       return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -24,7 +24,7 @@ var logSearches = exports.logSearches = function logSearches(knex) {
             case 0:
               term = params.term;
               _context.next = 3;
-              return knex('searches').insert({ term: term });
+              return knex.insert({ term: term }).into('searches');
 
             case 3:
 
@@ -46,8 +46,7 @@ var logSearches = exports.logSearches = function logSearches(knex) {
 
 var getSearches = exports.getSearches = function getSearches(knex) {
   return (0, _expressAsyncWrap2.default)(function () {
-    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(_ref2, res, next) {
-      var params = _ref2.params;
+    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(_, res) {
       var searches;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -70,7 +69,7 @@ var getSearches = exports.getSearches = function getSearches(knex) {
       }, _callee2, undefined);
     }));
 
-    return function (_x4, _x5, _x6) {
+    return function (_x4, _x5) {
       return ref.apply(this, arguments);
     };
   }());
